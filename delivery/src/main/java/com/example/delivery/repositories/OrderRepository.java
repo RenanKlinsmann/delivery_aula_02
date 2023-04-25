@@ -26,6 +26,7 @@ public class OrderRepository {
 		orders.add(new Order(2L,"rua teste 2", -21.55555, -22.222222, Instant.now(), OrderStatus.PENDING, products));
 		orders.add(new Order(3L,"rua teste 3", -21.55555, -22.222222, Instant.now(), OrderStatus.PENDING, products));
 		orders.add(new Order(5L,"rua teste 4", -21.55555, -22.222222, Instant.now(), OrderStatus.PENDING, products));
+		
 		return orders;
 	}
 

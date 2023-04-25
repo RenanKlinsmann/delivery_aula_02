@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_product")
-public class Product implements Serializable {
+public class Product implements Serializable, Comparable<Product> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -30,6 +30,13 @@ public class Product implements Serializable {
 		this.price = price;
 		this.description = description;
 		this.imageUri = imageUri;
+	}
+	
+	public Product(Long id, String name, Double price, String description) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.description = description;
 	}
 
 	public Long getId() {
@@ -71,11 +78,38 @@ public class Product implements Serializable {
 	public void setImageUri(String imageUri) {
 		this.imageUri = imageUri;
 	}
+	
+	public static boolean staticPredicatMetodo(Product p) {
+		return p.getPrice() > 7.0;
+	}
+	
+	public boolean nonStaticPredicatMetodo() {
+		return this.price < 7.0;
+	}
+	
+	public static void staticConsumerMetodo(Product p) {
+		p.setPrice(p.getPrice() * 5);
+	}
+	
+	public void nonStaticConsumerMetodo() {
+		this.setPrice(this.getPrice() - 2);
+	}
 
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description
 				+ ", imageUri=" + imageUri + "]";
+	}
+
+	@Override
+	public int compareTo(Product p) {
+		if(this.getPrice() > p.getPrice()) {
+			return 1;
+		}
+		if(this.getPrice() < p.getPrice()) {
+			return -1;
+		}
+		return 0;
 	}
 	
 	
